@@ -53,6 +53,14 @@ class PuppetX::Ip
     "#{cidr.mask(supernet_prefixlength)}/#{supernet_prefixlength}"
   end
 
+  def subnet_hosts
+    range.drop(1).map { |x| x.to_s}
+  end
+
+  def include?(ip)
+    cidr include? ip
+  end
+
   def to_s
     address.to_s
   end
